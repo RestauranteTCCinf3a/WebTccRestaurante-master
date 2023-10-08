@@ -41,36 +41,36 @@ if (!isset($_SESSION['usuario'])) {
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
     <style>
-.mesas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
+        .mesas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
 
-.mesa {
-    border: 1px solid #ccc;
-    padding: 15px;
-    width: 200px;
-    text-align: center;
-    background-color: #f9f9f9;
-}
+        .mesa {
+            border: 1px solid #ccc;
+            padding: 15px;
+            width: 200px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
 
-.mesa img {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
-}
+        .mesa img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
 
-.mesa-info {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+        .mesa-info {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
 
-.mesa-acao {
-    margin-top: 10px;
-}
-</style>
+        .mesa-acao {
+            margin-top: 10px;
+        }
+    </style>
 
 </head>
 
@@ -294,100 +294,100 @@ if (!isset($_SESSION['usuario'])) {
                     </div>
 
                     <div class="card shadow mb-4">
-    <div class="card-body">
-        <div class="mesas">
-            <?php
-            // Continue com o restante do código
-            include './conexao/config.php';
+                        <div class="card-body">
+                            <div class="mesas">
+                                <?php
+                                // Continue com o restante do código
+                                include './conexao/config.php';
 
-            try {
-                // Cria uma nova conexão PDO
-                $query = "SELECT id_mesa as id, numero_mesa as mesa, situacao FROM mesas WHERE situacao = 'ATIVO'";
-                $stmt = $conn->prepare($query);
-                $stmt->execute();
-                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                try {
+                                    // Cria uma nova conexão PDO
+                                    $query = "SELECT id_mesa as id, numero_mesa as mesa, situacao FROM mesas WHERE situacao = 'ATIVO'";
+                                    $stmt = $conn->prepare($query);
+                                    $stmt->execute();
+                                    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                foreach ($results as $row4) {
-                    echo '<div class="mesa">';
-                    echo '<img src="./img/mesa.png" alt="Mesa">';
-                    echo '<div class="mesa-info">';
-                    echo 'ID: ' . $row4['id'];
-                    echo '</div>';
-                    echo '<div class="mesa-info">';
-                    echo 'Nº Mesa: ' . $row4['mesa'];
-                    echo '</div>';
-                    echo '<div class="mesa-acao">';
-                    echo '<a href="deletar_mesa.php?id=' . $row4['id'] . '" class="btn btn-outline-danger"><i class="bi bi-trash3-fill"></i></a>';
-                    echo '</div>';
-                    echo '</div>';
-                }
-            } catch (PDOException $e) {
-                echo "Erro na conexão: " . $e->getMessage();
-            }
-            ?>
-        </div>
-    </div>
-</div>
+                                    foreach ($results as $row4) {
+                                        echo '<div class="mesa">';
+                                        echo '<img src="./img/mesa.png" alt="Mesa">';
+                                        echo '<div class="mesa-info">';
+                                        echo 'ID: ' . $row4['id'];
+                                        echo '</div>';
+                                        echo '<div class="mesa-info">';
+                                        echo 'Nº Mesa: ' . $row4['mesa'];
+                                        echo '</div>';
+                                        echo '<div class="mesa-acao">';
+                                        echo '<a href="deletar_mesa.php?id=' . $row4['id'] . '" class="btn btn-outline-danger"><i class="bi bi-trash3-fill"></i></a>';
+                                        echo '</div>';
+                                        echo '</div>';
+                                    }
+                                } catch (PDOException $e) {
+                                    echo "Erro na conexão: " . $e->getMessage();
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
 
 
 
-                <!-- /.container-fluid -->
+                    <!-- /.container-fluid -->
+
+                </div>
+                <!-- End of Main Content -->
+                <!-- End of Main Content -->
+
+                <!-- Footer -->
+                <footer class="sticky-footer ">
+
+                    <div class="copyright text-center my-auto">
+                        <span>Palacecode &copy; site desenvolvido 2023</span>
+                    </div>
+
+                </footer>
+                <!-- End of Footer -->
 
             </div>
-            <!-- End of Main Content -->
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer ">
-
-                <div class="copyright text-center my-auto">
-                    <span>Palacecode &copy; site desenvolvido 2023</span>
-                </div>
-
-            </footer>
-            <!-- End of Footer -->
+            <!-- End of Content Wrapper -->
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- End of Page Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Pronto para sair?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Selecione "Sair" abaixo se você está pronto para encerrar sua sessão</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-dark" href="index.php">Sair</a>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Pronto para sair?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Selecione "Sair" abaixo se você está pronto para encerrar sua sessão</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                        <a class="btn btn-dark" href="index.php">Sair</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <script type="text/javascript" src="js/mesas.js"></script>
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="js/mesas.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
 
 
 </body>

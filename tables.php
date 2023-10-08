@@ -1,7 +1,7 @@
 <?php
 
 // Start session
-if(!session_id()){
+if (!session_id()) {
     session_start();
 }
 require_once "./conexao/config.php";
@@ -35,10 +35,8 @@ if (!isset($_SESSION['usuario'])) {
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-        
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
 
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -79,63 +77,63 @@ if (!isset($_SESSION['usuario'])) {
                     <span> Painel de gerenciamento</span></a>
             </li>
 
-       <!-- Divider -->
-       <hr class="sidebar-divider">
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-       <!-- Heading -->
-       <div class="sidebar-heading">
-           Interface
-       </div>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Interface
+            </div>
 
-       <!-- Nav Item - Pages Collapse Menu -->
-                   <!--Apagado-->
-
-
-       <!-- Nav Item - Utilities Collapse Menu -->
-       <li class="nav-item">
-           <a class="nav-link" href="utilities-mesas.php">
-               <i class="fas fa-fw fa-table"></i>
-               <span>Mesas</span></a>
-       </li>
-
-         <!-- Divider -->
-         <hr class="sidebar-divider">
-
-       <li class="nav-item">
-           <a class="nav-link" href="utilities-cardapio.php">
-               <i class="fas bi-card-checklist"></i>
-               <span>Cardápio</span></a>
-       </li>
-         <!-- Divider -->
-         <hr class="sidebar-divider">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <!--Apagado-->
 
 
-        
-       <li class="nav-item">
-           <a class="nav-link" href="utilities-pedidos.php">
-               <i class="fas fa-fw bi-phone"></i>
-               <span>Pedidos</span></a>
-       </li>
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link" href="utilities-mesas.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Mesas</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <li class="nav-item">
+                <a class="nav-link" href="utilities-cardapio.php">
+                    <i class="fas bi-card-checklist"></i>
+                    <span>Cardápio</span></a>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="utilities-pedidos.php">
+                    <i class="fas fa-fw bi-phone"></i>
+                    <span>Pedidos</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
 
-       <li class="nav-item">
-           <a class="nav-link" href="utilities-caixa.php">
-               <i class="fas bi-cash-coin"></i>
-               <span>Caixa</span></a>
-       </li>
+            <li class="nav-item">
+                <a class="nav-link" href="utilities-caixa.php">
+                    <i class="fas bi-cash-coin"></i>
+                    <span>Caixa</span></a>
+            </li>
 
-       <!-- Divider -->
-       <hr class="sidebar-divider">
-   
-       <!-- Nav Item - Tables -->
-       <li class="nav-item">
-           <a class="nav-link" href="tables.php">
-               <i class="fas bi-person-circle"></i>
-               <span>Funcionários</span></a>
-       </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="tables.php">
+                    <i class="fas bi-person-circle"></i>
+                    <span>Funcionários</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -165,7 +163,7 @@ if (!isset($_SESSION['usuario'])) {
                     </form>
 
                     <!-- Topbar Search -->
-                    
+
                     </form>
 
                     <!-- Topbar Navbar -->
@@ -173,18 +171,14 @@ if (!isset($_SESSION['usuario'])) {
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Pesquisar..." aria-label="Pesquisar"
-                                            aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Pesquisar..." aria-label="Pesquisar" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-dark" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -196,29 +190,26 @@ if (!isset($_SESSION['usuario'])) {
                         </li>
 
                         <!-- Nav Item - Alerts -->
-                            <!--Apagado-->
+                        <!--Apagado-->
 
-                            <div class="topbar-divider d-none d-sm-block"></div>
+                        <div class="topbar-divider d-none d-sm-block"></div>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nomeUsuario ?></span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="conta.php">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Perfil 
+                                    Perfil
                                 </a>
-                        
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                   Sair da conta 
+                                    Sair da conta
                                 </a>
                             </div>
                         </li>
@@ -228,7 +219,7 @@ if (!isset($_SESSION['usuario'])) {
                 </nav>
                 <!-- End of Topbar -->
 
-              
+
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -236,30 +227,30 @@ if (!isset($_SESSION['usuario'])) {
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-dark">Funcionários</h1>
                     <p class="mb-4">
-                        <a target="_blank"
-                            href="https://datatables.net"></a></p>
+                        <a target="_blank" href="https://datatables.net"></a>
+                    </p>
 
-                            <button id="cadastrar-funcionario" type="button" class="btn btn-link" style="text-decoration: none; margin-bottom: 30px;" value="cadastrar">
-                              <i class="fas bi-box-arrow-up-right text-dark" style="float: left; margin-right: 10px; margin-top: 2px;"></i>
-                                <h6 class="m-0 font-weight-bold text-dark float-right ">Cadastrar Funcionario</h6>
-                            </button>
+                    <button id="cadastrar-funcionario" type="button" class="btn btn-link" style="text-decoration: none; margin-bottom: 30px;" value="cadastrar">
+                        <i class="fas bi-box-arrow-up-right text-dark" style="float: left; margin-right: 10px; margin-top: 2px;"></i>
+                        <h6 class="m-0 font-weight-bold text-dark float-right ">Cadastrar Funcionario</h6>
+                    </button>
 
-                            <script>
-                                document.getElementById("cadastrar-funcionario").addEventListener("click", function() {
-                                    window.location.href = "cadastro_funcionario.php";
-                                });
-                              </script>
-                               <?php
+                    <script>
+                        document.getElementById("cadastrar-funcionario").addEventListener("click", function() {
+                            window.location.href = "cadastro_funcionario.php";
+                        });
+                    </script>
+                    <?php
 
-                                    include './conexao/config.php';
+                    include './conexao/config.php';
 
-                                    try {
-                                        // Cria uma nova conexão PDO
-                                        $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
-                                        // Define o modo de erro PDO para exceções
-                                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    try {
+                        // Cria uma nova conexão PDO
+                        $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
+                        // Define o modo de erro PDO para exceções
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                                        $query = "SELECT ID_FUNC as id,
+                        $query = "SELECT ID_FUNC as id,
                                                         CPF_FUNC as cpf,
                                                         NOME_FUNC as nome,
                                                         EMAIL_FUNC as email,
@@ -273,323 +264,322 @@ if (!isset($_SESSION['usuario'])) {
                                                         DATE_FORMAT(DATA_INICIO, '%d/%m/%Y') as data_inicio,
                                                         FORMAT(SALARIO_FUNC, 2, 'pt_BR') as salario
                                                 FROM funcionario WHERE situacao = 'ATIVO'";
-                                        $stmt = $conn->query($query);
-                                        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                    } catch (PDOException $e) {
-                                        echo "Erro na conexão: " . $e->getMessage();
-                                    }
+                        $stmt = $conn->query($query);
+                        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    } catch (PDOException $e) {
+                        echo "Erro na conexão: " . $e->getMessage();
+                    }
 
-                                
-                                ?>
 
-                                <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-dark">Gerenciamento de Funcionários</h6>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" method="GET">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Nome</th>
-                                                        <th>Ocupação</th>
-                                                        <th>Idade</th>
-                                                        <th>Data de início</th>
-                                                        <th>Salário</th>
-                                                        <th>Ações</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
-                                                    foreach ($results as $row) {
-                                                    ?>
-                                                        <tr>
-                                                            <td><?php echo $row['nome']; ?></td>
-                                                            <td><?php echo $row['ocupacao']; ?></td>
-                                                            <td><?php echo $row['idade']; ?></td>
-                                                            <td><?php echo $row['data_inicio']; ?></td>
-                                                            <td><?php echo $row['salario']; ?></td>
-                                                            <td class="text-center">
-                                                                <span class="d-none d-md-block">
+                    ?>
 
-                                                                <a class="btn btn-outline-primary" href="visualizar.php?id=<?php echo $row['id']; ?>" data-toggle="modal" data-target="#myModal1<?php echo $row['id']; ?>">Visualizar</a>
-                                                                <div class="modal fade" id="myModal1<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1<?php echo $row['id']; ?>">
-                                                                    <div class="modal-dialog" role="document">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <h5 class="modal-title" id="myModalLabel1<?php echo $row['id']; ?>">Visualizar Dados</h5>
-                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                    <span aria-hidden="true">&times;</span>
-                                                                                </button>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-dark">Gerenciamento de Funcionários</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" method="GET">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Ocupação</th>
+                                            <th>Idade</th>
+                                            <th>Data de início</th>
+                                            <th>Salário</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        foreach ($results as $row) {
+                                        ?>
+                                            <tr>
+                                                <td><?php echo $row['nome']; ?></td>
+                                                <td><?php echo $row['ocupacao']; ?></td>
+                                                <td><?php echo $row['idade']; ?></td>
+                                                <td><?php echo $row['data_inicio']; ?></td>
+                                                <td><?php echo $row['salario']; ?></td>
+                                                <td class="text-center">
+                                                    <span class="d-none d-md-block">
+
+                                                        <a class="btn btn-outline-primary" href="visualizar.php?id=<?php echo $row['id']; ?>" data-toggle="modal" data-target="#myModal1<?php echo $row['id']; ?>">Visualizar</a>
+                                                        <div class="modal fade" id="myModal1<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1<?php echo $row['id']; ?>">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="myModalLabel1<?php echo $row['id']; ?>">Visualizar Dados</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <form class="user" action="#" method="GET">
+                                                                            <div class="form-group row">
+                                                                                <label class="col-sm-4 col-form-label visually-hidden">ID:</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="hidden" class="form-control form-control-user" value="<?php echo $row['id']; ?>" readonly>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="modal-body">
-                                                                                <form class="user" action="#" method="GET">
-                                                                                    <div class="form-group row">
-                                                                                        <label class="col-sm-4 col-form-label visually-hidden">ID:</label>
-                                                                                        <div class="col-sm-8">
-                                                                                            <input type="hidden" class="form-control form-control-user" value="<?php echo $row['id']; ?>" readonly>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group row">
-                                                                                        <label class="col-sm-4 col-form-label">CPF:</label>
-                                                                                        <div class="col-sm-8">
-                                                                                            <input type="text" class="form-control form-control-user" value="<?php echo $row['cpf']; ?>" readonly>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group row">
-                                                                                        <label class="col-sm-4 col-form-label">Nome:</label>
-                                                                                        <div class="col-sm-8">
-                                                                                            <input type="text" class="form-control form-control-user" value="<?php echo $row['nome']; ?>" readonly>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <!-- Outros campos para visualização -->
-                                                                                    <div class="form-group row">
-                                                                                        <label class="col-sm-4 col-form-label">Email:</label>
-                                                                                        <div class="col-sm-8">
-                                                                                            <input type="text" class="form-control form-control-user" value="<?php echo $row['email']; ?>" readonly>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group row">
-                                                                                        <label class="col-sm-4 col-form-label">Ocupação:</label>
-                                                                                        <div class="col-sm-8">
-                                                                                            <input type="text" class="form-control form-control-user" value="<?php echo $row['ocupacao']; ?>" readonly>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group row">
-                                                                                        <label class="col-sm-4 col-form-label">Usuário:</label>
-                                                                                        <div class="col-sm-8">
-                                                                                            <input type="text" class="form-control form-control-user" value="<?php echo $row['usuario']; ?>" readonly>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group row">
-                                                                                        <label class="col-sm-4 col-form-label">Idade:</label>
-                                                                                        <div class="col-sm-8">
-                                                                                            <input type="text" class="form-control form-control-user" value="<?php echo $row['idade']; ?>" readonly>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group row">
-                                                                                        <label class="col-sm-4 col-form-label">Senha:</label>
-                                                                                        <div class="col-sm-8">
-                                                                                            <input type="password" class="form-control form-control-user" value="<?php echo $row['senha']; ?>" readonly>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group row">
-                                                                                        <label class="col-sm-4 col-form-label">RG:</label>
-                                                                                        <div class="col-sm-8">
-                                                                                            <input type="text" class="form-control form-control-user" value="<?php echo $row['rg']; ?>" readonly>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group row">
-                                                                                        <label class="col-sm-4 col-form-label ">Salário:</label>
-                                                                                        <div class="col-sm-8">
-                                                                                            <input type="text" class="form-control form-control-user" value="<?php echo $row['salario']; ?>" readonly>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group row">
-                                                                                        <label class="col-sm-4 col-form-label">Telefone:</label>
-                                                                                        <div class="col-sm-8">
-                                                                                            <input type="text" class="form-control form-control-user" value="<?php echo $row['telefone']; ?>" readonly>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group row">
-                                                                                        <label class="col-sm-4 col-form-label">Data de Início:</label>
-                                                                                        <div class="col-sm-8">
-                                                                                            <input type="text" class="form-control form-control-user" value="<?php echo $row['data_inicio']; ?>" readonly>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </form>
+                                                                            <div class="form-group row">
+                                                                                <label class="col-sm-4 col-form-label">CPF:</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="text" class="form-control form-control-user" value="<?php echo $row['cpf']; ?>" readonly>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
+                                                                            <div class="form-group row">
+                                                                                <label class="col-sm-4 col-form-label">Nome:</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="text" class="form-control form-control-user" value="<?php echo $row['nome']; ?>" readonly>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- Outros campos para visualização -->
+                                                                            <div class="form-group row">
+                                                                                <label class="col-sm-4 col-form-label">Email:</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="text" class="form-control form-control-user" value="<?php echo $row['email']; ?>" readonly>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label class="col-sm-4 col-form-label">Ocupação:</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="text" class="form-control form-control-user" value="<?php echo $row['ocupacao']; ?>" readonly>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label class="col-sm-4 col-form-label">Usuário:</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="text" class="form-control form-control-user" value="<?php echo $row['usuario']; ?>" readonly>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label class="col-sm-4 col-form-label">Idade:</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="text" class="form-control form-control-user" value="<?php echo $row['idade']; ?>" readonly>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label class="col-sm-4 col-form-label">Senha:</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="password" class="form-control form-control-user" value="<?php echo $row['senha']; ?>" readonly>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label class="col-sm-4 col-form-label">RG:</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="text" class="form-control form-control-user" value="<?php echo $row['rg']; ?>" readonly>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label class="col-sm-4 col-form-label ">Salário:</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="text" class="form-control form-control-user" value="<?php echo $row['salario']; ?>" readonly>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label class="col-sm-4 col-form-label">Telefone:</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="text" class="form-control form-control-user" value="<?php echo $row['telefone']; ?>" readonly>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label class="col-sm-4 col-form-label">Data de Início:</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="text" class="form-control form-control-user" value="<?php echo $row['data_inicio']; ?>" readonly>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                        </div>
 
 
-                                                                    <a class="btn btn-outline-warning" href="editar_registro.php?id=<?php echo $row['id']; ?>" data-toggle="modal" data-target="#myModal<?php echo $row['id']; ?>">Editar</a>
-                                                                    <div class="modal fade" id="myModal<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel<?php echo $row['id']; ?>">
-                                                                        <div class="modal-dialog" role="document">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-header">
-                                                                                    <h5 class="modal-title" id="myModalLabel<?php echo $row['id']; ?>">Formulário de Edição</h5>
-                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                        <span aria-hidden="true">&times;</span>
-                                                                                    </button>
-                                                                                </div>
-                                                                                <div class="modal-body">
-                                                                                    <form class="user" action="update_registro.php" method="POST">
-                                                                                    <div class="form-group row">
-                                                                                            <input type="hidden" class="form-control form-control-user" name="id" value="<?php echo $row['id']; ?>">
-                                                                                            <div class="col-sm-12 mb-3 mb-sm-0">
-                                                                                                <input type="text" class="form-control form-control-user" name="cpf" value="<?php echo $row['cpf']; ?>">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="form-group row">                                                                                            
-                                                                                            <div class="col-sm-12 mb-3 mb-sm-0">
-                                                                                                <input type="text" class="form-control form-control-user" name="nome" value="<?php echo $row['nome']; ?>">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        
-                                                                                        <!-- Outros campos para edição --> 
-                                                                                        <div class="form-group row">
-                                                                                            <div class="col-sm-12 mb-3 mb-sm-0">
-                                                                                                <input type="email" class="form-control form-control-user" name="email" value="<?php echo $row['email']; ?>">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        
-                                                                                        <div class="form-group row">
-                                                                                            <div class="col-sm-12">
-                                                                                                <input type="text" class="form-control form-control-user" name="ocupacao" value="<?php echo $row['ocupacao']; ?>">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        
-                                                                                        <div class="form-group row">
-                                                                                            <div class="col-sm-12">
-                                                                                                <input type="text" class="form-control form-control-user" name="usuario" value="<?php echo $row['usuario']; ?>">
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="form-group row">
-                                                                                            <div class="col-sm-12">
-                                                                                                <input type="text" class="form-control form-control-user" name="idade" value="<?php echo $row['idade']; ?>">
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="form-group row">
-                                                                                            <div class="col-sm-12">
-                                                                                                <input type="password" class="form-control form-control-user" name="senha" value="<?php echo $row['senha']; ?>">
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="form-group row">
-                                                                                            <div class="col-sm-12">
-                                                                                                <input type="text" class="form-control form-control-user" name="rg" value="<?php echo $row['rg']; ?>">
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="form-group row">
-                                                                                            <div class="col-sm-12">
-                                                                                                <input type="text" class="form-control form-control-user" name="salario" value="<?php echo $row['salario']; ?>">
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="form-group row">
-                                                                                            <div class="col-sm-12">
-                                                                                                <input type="text" class="form-control form-control-user" name="telefone" value="<?php echo $row['telefone']; ?>">
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="form-group row">
-                                                                                            <div class="col-sm-12">
-                                                                                                <input type="text" class="form-control form-control-user" name="data_inicio" id="data" value="<?php echo $row['data_inicio']; ?>">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                       
-                                                                                        <!-- Botão de envio -->
-                                                                                        <input class="btn btn-light text-dark w-100" type="submit" value="Salvar">
-                                                                                    </form>
+                                                        <a class="btn btn-outline-warning" href="editar_registro.php?id=<?php echo $row['id']; ?>" data-toggle="modal" data-target="#myModal<?php echo $row['id']; ?>">Editar</a>
+                                                        <div class="modal fade" id="myModal<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel<?php echo $row['id']; ?>">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="myModalLabel<?php echo $row['id']; ?>">Formulário de Edição</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <form class="user" action="update_registro.php" method="POST">
+                                                                            <div class="form-group row">
+                                                                                <input type="hidden" class="form-control form-control-user" name="id" value="<?php echo $row['id']; ?>">
+                                                                                <div class="col-sm-12 mb-3 mb-sm-0">
+                                                                                    <input type="text" class="form-control form-control-user" name="cpf" value="<?php echo $row['cpf']; ?>">
                                                                                 </div>
                                                                             </div>
-                                                                        </div>
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-12 mb-3 mb-sm-0">
+                                                                                    <input type="text" class="form-control form-control-user" name="nome" value="<?php echo $row['nome']; ?>">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <!-- Outros campos para edição -->
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-12 mb-3 mb-sm-0">
+                                                                                    <input type="email" class="form-control form-control-user" name="email" value="<?php echo $row['email']; ?>">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-12">
+                                                                                    <input type="text" class="form-control form-control-user" name="ocupacao" value="<?php echo $row['ocupacao']; ?>">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-12">
+                                                                                    <input type="text" class="form-control form-control-user" name="usuario" value="<?php echo $row['usuario']; ?>">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-12">
+                                                                                    <input type="text" class="form-control form-control-user" name="idade" value="<?php echo $row['idade']; ?>">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-12">
+                                                                                    <input type="password" class="form-control form-control-user" name="senha" value="<?php echo $row['senha']; ?>">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-12">
+                                                                                    <input type="text" class="form-control form-control-user" name="rg" value="<?php echo $row['rg']; ?>">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-12">
+                                                                                    <input type="text" class="form-control form-control-user" name="salario" value="<?php echo $row['salario']; ?>">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-12">
+                                                                                    <input type="text" class="form-control form-control-user" name="telefone" value="<?php echo $row['telefone']; ?>">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-12">
+                                                                                    <input type="text" class="form-control form-control-user" name="data_inicio" id="data" value="<?php echo $row['data_inicio']; ?>">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <!-- Botão de envio -->
+                                                                            <input class="btn btn-light text-dark w-100" type="submit" value="Salvar">
+                                                                        </form>
                                                                     </div>
-                                                                    <a href="deletar_registro.php?id=<?php echo $row['id']; ?>" class="btn btn-outline-danger">Excluir</a>
-                                                                </span>
-                                                            </td>
-                                                        </tr>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                <!-- /.container-fluid -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <a href="deletar_registro.php?id=<?php echo $row['id']; ?>" class="btn btn-outline-danger">Excluir</a>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.container-fluid -->
+
+                </div>
+                <!-- End of Main Content -->
+
+                <!-- Footer -->
+                <footer class="sticky-footer">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; PalaceCode 2023</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
 
             </div>
-            <!-- End of Main Content -->
+            <!-- End of Content Wrapper -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; PalaceCode 2023</span>
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Pronto para sair?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Selecione "Sair" abaixo se você está pronto para encerrar sua sessão</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                        <a class="btn btn-dark" href="index.php">Sair</a>
                     </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Pronto para sair?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Selecione "Sair" abaixo se você está pronto para encerrar sua sessão</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-dark" href="index.php">Sair</a>
-                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Page level plugins -->
+        <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+        <!-- Page level custom scripts -->
+        <script src="js/demo/datatables-demo.js"></script>
 
-     <!-- Bootstrap core JavaScript-->
-     <script src="vendor/jquery/jquery.min.js"></script>
-     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
- 
-     <!-- Core plugin JavaScript-->
-     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
- 
-     <!-- Custom scripts for all pages-->
-     <script src="js/sb-admin-2.min.js"></script>
- 
-     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
- 
-     <!-- Core plugin JavaScript-->
-     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
- 
-     <!-- Custom scripts for all pages-->
-     <script src="js/sb-admin-2.min.js"></script>
- 
- 
-      <!-- Page level plugins -->
-      <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-      <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-  
-      <!-- Page level custom scripts -->
-      <script src="js/demo/datatables-demo.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
+
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
+
+
+        <!-- Page level plugins -->
+        <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 

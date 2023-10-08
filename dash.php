@@ -1,7 +1,7 @@
 <?php
 
 // Start session
-if(!session_id()){
+if (!session_id()) {
     session_start();
 }
 require_once "./conexao/config.php";
@@ -35,20 +35,109 @@ if (!isset($_SESSION['usuario'])) {
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="css/dash1.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <style>
+        @keyframes rubberBand {
+            0% {
+                transform: scale(1);
+            }
+
+            30% {
+                transform: scale(1.25);
+            }
+
+            40% {
+                transform: scale(0.95);
+            }
+
+            60% {
+                transform: scale(1.15);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .rubberBand {
+            animation-name: rubberBand;
+            animation-duration: 1s;
+            animation-timing-function: ease-in-out;
+        }
+
+        @keyframes rubberBand {
+            0% {
+                transform: scale(1);
+            }
+
+            30% {
+                transform: scale(1.25);
+            }
+
+            40% {
+                transform: scale(0.95);
+            }
+
+            60% {
+                transform: scale(1.15);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .rubberBand {
+            animation-name: rubberBand;
+            animation-duration: 1s;
+            animation-timing-function: ease-in-out;
+        }
+
+        .card1 {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card1:hover {
+            transform: scale(1.1);
+        }
+
+        .custom-button {
+            background-color: transparent;
+            /* Fundo transparente */
+            color: #333;
+            /* Cor do texto (cinza escuro) */
+            border: none;
+            /* Remova a borda */
+            border-radius: 5px;
+            /* Borda arredondada */
+            padding: 10px 20px;
+            /* Espaçamento interno */
+            font-size: 16px;
+            /* Tamanho da fonte */
+            text-decoration: none !important;
+            /* Remova a decoração de texto */
+        }
+
+        .custom-button i {
+            font-size: 20px;
+            /* Tamanho do ícone */
+            margin-right: 5px;
+            /* Espaçamento à direita do ícone */
+        }
+    </style>
 
 </head>
 
 <body id="page-top ">
-    
+
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -72,7 +161,7 @@ if (!isset($_SESSION['usuario'])) {
                 <a class="nav-link" href="dash.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Painel de gerenciamento</span></a>
-                    
+
             </li>
 
             <!-- Divider -->
@@ -84,7 +173,7 @@ if (!isset($_SESSION['usuario'])) {
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-                        <!--Apagado-->
+            <!--Apagado-->
 
 
             <!-- Nav Item - Utilities Collapse Menu -->
@@ -94,28 +183,28 @@ if (!isset($_SESSION['usuario'])) {
                     <span>Mesas</span></a>
             </li>
 
-              <!-- Divider -->
-              <hr class="sidebar-divider">
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
             <li class="nav-item">
                 <a class="nav-link" href="utilities-cardapio.php">
                     <i class="fas bi-card-checklist"></i>
                     <span>Cardápio</span></a>
             </li>
-              <!-- Divider -->
-              <hr class="sidebar-divider">
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-             
+
             <li class="nav-item">
                 <a class="nav-link" href="utilities-pedidos.php">
                     <i class="fas fa-fw bi-phone"></i>
                     <span>Pedidos</span></a>
             </li>
 
-                 <!-- Divider -->
-                 <hr class="sidebar-divider">
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-    
+
             <li class="nav-item">
                 <a class="nav-link" href="utilities-caixa.php">
                     <i class="fas bi-cash-coin"></i>
@@ -123,8 +212,8 @@ if (!isset($_SESSION['usuario'])) {
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider" >
-        
+            <hr class="sidebar-divider">
+
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.php">
@@ -140,13 +229,13 @@ if (!isset($_SESSION['usuario'])) {
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-        
+
         </ul>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="fundo-2 d-flex flex-column " style="background-image:url(./img/fundo2.png)">
-            
+
 
             <!-- Main Content -->
             <div id="content">
@@ -157,27 +246,23 @@ if (!isset($_SESSION['usuario'])) {
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
-                        
+
                     </button>
 
-                 
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-dark" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -193,20 +278,17 @@ if (!isset($_SESSION['usuario'])) {
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nomeUsuario; ?></span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="conta.php">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Perfil
                                 </a>
-                               
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -219,158 +301,162 @@ if (!isset($_SESSION['usuario'])) {
 
                 </nav>
                 <!-- End of Topbar -->
-                
+
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-dark">Painel de controle</h1>
-                        <a href="backup.php" class="btn btn-info"><i class="bi bi-download"></i> Backup do banco</a>
+                        <a href="backup.php" class="custom-button">
+                            <i class="bi bi-download"></i> Backup do banco
+                        </a>
                     </div>
-                             <!-- Ganhos (mensal) Card Example -->
-                             <div class="row">
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Funcionários</div>
-                        <?php
-                        try {
-                            $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
-                            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                            $query = "SELECT COUNT(*) as funcionario_cadastro FROM funcionario WHERE situacao = 'ATIVO'";
-                            $stmt = $conn->query($query);
-                            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                            
-                            $funcionario_cadastro = $result['funcionario_cadastro'];
-                            
-                            echo '<div class="h5 mb-0 font-weight-bold text-gray-800">' . number_format($funcionario_cadastro) . '</div>';
-                        } catch (PDOException $e) {
-                            echo "Erro na conexão: " . $e->getMessage();
-                        }
-                        ?>
-                    </div>
-                    <div class="col-auto">
-                        <i class="bi bi-file-person-fill fa-2x text-success"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                    <!-- Ganhos (mensal) Card Example -->
+                    <div class="row">
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card1 border-left-success shadow h-100 py-2 rubberBand">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Funcionários
+                                            </div>
+                                            <?php
+                                            try {
+                                                $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
+                                                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-info shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                            Pedidos em andamento</div>
-                        <?php
-                        try{
-                        $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
-                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                                $query = "SELECT COUNT(*) as funcionario_cadastro FROM funcionario WHERE situacao = 'ATIVO'";
+                                                $stmt = $conn->query($query);
+                                                $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                        $query = "SELECT COUNT(*) as pedidos_ativos FROM Pedidos WHERE situacao = 'ATIVO'";
-                        $stmt = $conn->query($query);
-                        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                        
-                        $pedidos_ativos = $result['pedidos_ativos'];
-                        
-                        echo '<div class="h5 mb-0 font-weight-bold text-gray-800">' . number_format($pedidos_ativos) . '</div>';
-                    } catch (PDOException $e) {
-                        echo "Erro na conexão: " . $e->getMessage();
-                    }
-                        ?>
-                    </div>
-                    <div class="col-auto">
-                        <i class="bi bi-list-check fa-2x text-info"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                                                $funcionario_cadastro = $result['funcionario_cadastro'];
 
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-        Ganhos do dia
-    </div>
-    <?php
-    try {
-        $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                                echo '<div class="h5 mb-0 font-weight-bold text-gray-800">' . number_format($funcionario_cadastro) . '</div>';
+                                            } catch (PDOException $e) {
+                                                echo "Erro na conexão: " . $e->getMessage();
+                                            }
+                                            ?>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="bi bi-file-person-fill fa-2x text-success"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-        $query = "SELECT SUM(valorTotal) as Total FROM Pedidos WHERE DATE(timestamp) = CURDATE()";
-        $stmt = $conn->query($query);
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $Total = $result['Total'];
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card1 border-left-success shadow h-100 py-2 rubberBand">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                Pedidos em andamento</div>
+                                            <?php
+                                            try {
+                                                $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
+                                                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Check if $Total is not null before formatting and displaying it
-        if ($Total !== null) {
-            echo '<div class="h5 mb-0 font-weight-bold text-gray-800">R$ ' . number_format($Total, 2) . '</div>';
-        } else {
-            echo '<div class="h5 mb-0 font-weight-bold text-gray-800">Sem ganhos hoje
+                                                $query = "SELECT COUNT(*) as pedidos_ativos FROM Pedidos WHERE situacao = 'ATIVO'";
+                                                $stmt = $conn->query($query);
+                                                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                                $pedidos_ativos = $result['pedidos_ativos'];
+
+                                                echo '<div class="h5 mb-0 font-weight-bold text-gray-800">' . number_format($pedidos_ativos) . '</div>';
+                                            } catch (PDOException $e) {
+                                                echo "Erro na conexão: " . $e->getMessage();
+                                            }
+                                            ?>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="bi bi-list-check fa-2x text-info"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card1 border-left-success shadow h-100 py-2 rubberBand">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Ganhos do dia
+                                            </div>
+                                            <?php
+                                            try {
+                                                $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
+                                                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                                                $query = "SELECT SUM(valorTotal) as Total FROM Pedidos WHERE DATE(timestamp) = CURDATE()";
+                                                $stmt = $conn->query($query);
+                                                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                                $Total = $result['Total'];
+
+                                                // Check if $Total is not null before formatting and displaying it
+                                                if ($Total !== null) {
+                                                    echo '<div class="h5 mb-0 font-weight-bold text-gray-800">R$ ' . number_format($Total, 2) . '</div>';
+                                                } else {
+                                                    echo '<div class="h5 mb-0 font-weight-bold text-gray-800">Sem ganhos hoje
             </div>';
-        }
-    } catch (PDOException $e) {
-        echo "Erro na conexão: " . $e->getMessage();
-    }
-    ?>
-</div>
+                                                }
+                                            } catch (PDOException $e) {
+                                                echo "Erro na conexão: " . $e->getMessage();
+                                            }
+                                            ?>
+                                        </div>
 
-                    <div class="col-auto">
-                        <i class="bi bi-cash-coin fa-2x text-success"></i>
+                                        <div class="col-auto">
+                                            <i class="bi bi-cash-coin fa-2x text-success"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card1 border-left-success shadow h-100 py-2 rubberBand">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                Mesas Disponíveis</div>
+                                            <?php
+                                            try {
+                                                $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
+                                                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                                                $query = "SELECT COUNT(*) as pedidos_ativos FROM mesas WHERE situacao = 'ATIVO'";
+                                                $stmt = $conn->query($query);
+                                                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                                $pedidos_ativos = $result['pedidos_ativos'];
+
+                                                echo '<div class="h5 mb-0 font-weight-bold text-gray-800">' . number_format($pedidos_ativos) . '</div>';
+                                            } catch (PDOException $e) {
+                                                echo "Erro na conexão: " . $e->getMessage();
+                                            }
+                                            ?>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="bi bi-list-check fa-2x text-info"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-info shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                            Mesas Disponíveis</div>
-                        <?php
-                        try{
-                        $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
-                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                        $query = "SELECT COUNT(*) as pedidos_ativos FROM mesas WHERE situacao = 'ATIVO'";
-                        $stmt = $conn->query($query);
-                        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                        
-                        $pedidos_ativos = $result['pedidos_ativos'];
-                        
-                        echo '<div class="h5 mb-0 font-weight-bold text-gray-800">' . number_format($pedidos_ativos) . '</div>';
-                    } catch (PDOException $e) {
-                        echo "Erro na conexão: " . $e->getMessage();
-                    }
-                        ?>
-                    </div>
-                    <div class="col-auto">
-                        <i class="bi bi-list-check fa-2x text-info"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    </div>
-
-</div>
-
-<?php
+                    <?php
 include './conexao/config.php';
 
 try {
@@ -393,17 +479,20 @@ try {
     // (coloque aqui a lógica para inserir os novos pedidos)
     
     // Consulta para recuperar os funcionários do mês atual
-    $query = "SELECT f.ID_FUNC as id_funcionario,
-                f.USUARIO as funcionario,
-                DATE_FORMAT(CURRENT_DATE(), '%M') as mes_atual, 
-                COUNT(p.ID_Pedido) as total_pedidos,
-                SUM(p.valorTotal) as valor_total
-            FROM Pedidos p
-            INNER JOIN funcionario f ON p.ID_FUNC = f.ID_FUNC
-            WHERE MONTH(p.timestamp) = $mes_atual
-            GROUP BY f.ID_FUNC, f.USUARIO, mes_atual
-            ORDER BY valor_total DESC limit 4";
-    
+    $query = "SELECT 
+    f.ID_FUNC AS id_funcionario,
+    f.USUARIO AS funcionario,
+    p.timestamp AS data_pedido,
+    COUNT(p.ID_Pedido) AS total_pedidos,
+    SUM(p.valorTotal) AS valor_total_pedidos
+FROM funcionario f
+LEFT JOIN Pedidos p ON f.ID_FUNC = p.ID_FUNC
+WHERE MONTH(p.timestamp) = MONTH(CURRENT_DATE())
+AND YEAR(p.timestamp) = YEAR(CURRENT_DATE())
+GROUP BY f.ID_FUNC, f.USUARIO, p.timestamp
+ORDER BY valor_total_pedidos DESC
+LIMIT 4";
+
     $stmt = $conn->query($query);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
@@ -427,9 +516,9 @@ try {
                         foreach ($results as $row) { ?>
                             <tr>
                                 <td><?php echo $row['funcionario']; ?></td>
-                                <td><?php echo $row['mes_atual']; ?></td>
+                                <td><?php echo $mes_atual; ?></td>
                                 <td><?php echo $row['total_pedidos']; ?></td>
-                                <td>R$ <?php echo number_format($row['valor_total'], 2, ',', '.'); ?></td>
+                                <td>R$ <?php echo number_format($row['valor_total_pedidos'], 2, ',', '.'); ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -439,12 +528,15 @@ try {
 
 <?php
     } else {
-        echo "Nenhum resultado encontrado.";
+        echo " ";
     }
 } catch (PDOException $e) {
     echo "Erro na conexão: " . $e->getMessage();
 }
 ?>
+
+
+
 
 
                     <!-- Content Row -->
@@ -453,15 +545,15 @@ try {
                         <div class=" container  mb-4">
 
                             <!-- Illustrations -->
-                            <div class="cardimg card shadow mb-4 p-2 m-5 " >
+                            <div class="cardimg card1 shadow mb-4 p-2 m-5 ">
                                 <div class="card-body">
                                     <div class="text-center">
                                         <img class="container" id="rockgif" src="./img/gif1.gif">
- 
+
                                         <img class="container" id="palacegif" src="./img/gif2.gif">
-                                        
+
                                     </div>
-                                    
+
                                 </div>
                             </div>
 
@@ -498,8 +590,7 @@ try {
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -527,7 +618,7 @@ try {
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
-   
+
 </body>
 
 </html>
