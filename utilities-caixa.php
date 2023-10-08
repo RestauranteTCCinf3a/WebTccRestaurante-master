@@ -278,53 +278,54 @@ try {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    $id_mesa = isset($_GET['id_mesa']) ? $_GET['id_mesa'] : '1';
-                    $totalSoma = 0; // Inicialize a variável para a soma dos valores totais
+    <?php
+    $id_mesa = isset($_GET['id_mesa']) ? $_GET['id_mesa'] : '1';
+    $totalSoma = 0; // Inicialize a variável para a soma dos valores totais
 
-                    $query = "SELECT p.ID_Pedido as id_pedido,
-                                    p.id_mesa,
-                                    m.numero_mesa,
-                                    c.nome as nome_cardapio,
-                                    p.valorTotal as total,
-                                    p.descricao as descricao,
-                                    p.quantidade as qtd,
-                                    p.situacao
-                                    FROM Pedidos p
-                                    INNER JOIN cardapio c ON p.ID_CARDAPIO = c.ID_CARDAPIO
-                                    LEFT JOIN mesas m ON m.id_mesa = p.id_mesa  
-                                    WHERE p.id_mesa = :id_mesa and p.situacao = 'ATIVO'";
+    $query = "SELECT p.ID_Pedido as id_pedido,
+        p.id_mesa,
+        m.numero_mesa,
+        c.nome as nome_cardapio,
+        p.valorTotal as total,
+        p.descricao as descricao,
+        p.quantidade as qtd,
+        p.situacao
+        FROM Pedidos p
+        INNER JOIN cardapio c ON p.ID_CARDAPIO = c.ID_CARDAPIO
+        LEFT JOIN mesas m ON m.id_mesa = p.id_mesa  
+        WHERE p.id_mesa = :id_mesa AND p.situacao = 'ATIVO'";
 
-                    $stmt = $conn->prepare($query);
-                    $stmt->bindParam(':id_mesa', $id_mesa, PDO::PARAM_INT);
-                    $stmt->execute();
-                    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':id_mesa', $id_mesa, PDO::PARAM_INT);
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                    foreach ($results as $row) {
-                        $totalSoma += $row['total']; // Adicione o valor total do pedido à soma
-                        ?>
-                        <tr>
-                            <td></td>
-                            <td><?php echo $row['numero_mesa']; ?></td>
-                            <td><?php echo $row['nome_cardapio']; ?></td>
-                            <td>R$ <?php echo number_format($row['total'], 2, ',', '.'); ?></td>
-                            <td><?php echo $row['descricao']; ?></td>
-                            <td><?php echo $row['qtd']; ?></td>
-                            <td><?php echo $row['situacao']; ?> </td>
-                            <td>
-                                <form method="POST" action="fecharpedido.php">
-                                    <input type="hidden" name="id_mesa" value="<?php echo $id_mesa; ?>">
-                                    <button type="submit" class="btn btn-info" onclick="return confirm('Tem certeza que deseja fechar todos os pedidos desta mesa?')"><i class="bi bi-lock-fill"></i></button>
-                                </form>
-                            </td>
-                        </tr>
-                    <?php } ?>
-                    <tr>
-                        <td colspan="8" class="text-center bg-body">
-                            <strong>Valor Total:</strong><br>R$ <?php echo number_format($totalSoma, 2, ',', '.'); ?>
-                        </td>
-                    </tr>
-                </tbody>
+    foreach ($results as $row) {
+        $totalSoma += $row['total']; // Adicione o valor total do pedido à soma
+        ?>
+        <tr>
+            <td></td>
+            <td><?php echo $row['numero_mesa']; ?></td>
+            <td><?php echo $row['nome_cardapio']; ?></td>
+            <td>R$ <?php echo number_format($row['total'], 2, ',', '.'); ?></td>
+            <td><?php echo $row['descricao']; ?></td>
+            <td><?php echo $row['qtd']; ?></td>
+            <td><?php echo $row['situacao']; ?> </td>
+            <td>
+                <form method="POST" action="fecharpedido.php">
+                    <input type="hidden" name="id_mesa" value="<?php echo $id_mesa; ?>">
+                    <button type="submit" class="btn btn-info" onclick="return confirm('Tem certeza que deseja fechar todos os pedidos desta mesa?')"><i class="bi bi-lock-fill"></i></button>
+                </form>
+            </td>
+        </tr>
+    <?php } ?>
+    <tr>
+        <td colspan="8" class="text-center bg-body">
+            <strong>Valor Total:</strong><br>R$ <?php echo number_format($totalSoma, 2, ',', '.'); ?>
+        </td>
+    </tr>
+</tbody>
+
             </table>
         </div>
     </div>

@@ -47,24 +47,45 @@ if (!isset($_SESSION['usuario'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
 
+    <style>
+.custom-close {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #000; /* Cor do ícone */
+    font-size: 24px; /* Tamanho do ícone */
+    margin-right: 100px; /* Espaço entre o ícone e o canto direito do botão */
+    float: right; /* Alinhar à direita */
+}
+
+    </style>
+
 </head>
 
 <body class="corpitio" style="background-image:url(./img/fundo2.png)">
 
     <div class="container form " >
         <div class="row" >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                    onclick="window.location.href='dash.php'">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
             <div class=" col-lg-12" >
                 <div class="card o-hidden border-0 shadow-lg my-5" >
+                <div class="form-group"></div>
                     <div class="card-body p-0">
+                   
                         <div class="row">
                             <div class="col-lg-12 text-center">
                                 <img id="palace" src="./img/palacelogo1.png" alt="Logo Palace">
                                 <img id="rock" src="./img/logotcc.png" alt="Logo Rock">
                             </div>
                         </div>
+                        
                         <div class="row " >
                             <div class="col-lg-12">
                                 <div class="p-5">
+                               
                                     <div class="text-center">
                                         <h1 class="h2 text-dark mb-4">Cadastrar Funcionário</h1>
                                     </div>

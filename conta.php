@@ -33,6 +33,7 @@ if (!isset($_SESSION['usuario'])) {
 </head>
 
 <body class="page-top" style="background-image:url(./img/fundo2.png)">
+
     <div class="container" >
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0 small-card-body">

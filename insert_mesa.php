@@ -16,28 +16,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Define o modo de erro PDO para exceções
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Prepara a declaração SQL para inserir o registro
-        $stmt = $conn->prepare("INSERT INTO mesas (numero_mesa)
-        VALUES (:mesa)");
+        // Verifica se a mesa já existe no banco de dados
+        $checkStmt = $conn->prepare("SELECT * FROM mesas WHERE numero_mesa = :mesa");
+        $checkStmt->bindParam(':mesa', $mesa);
+        $checkStmt->execute();
+        $existingMesa = $checkStmt->fetch(PDO::FETCH_ASSOC);
 
-        // Vincula os parâmetros aos valores
-        $stmt->bindParam(':mesa', $mesa);
-       
-        // Executa a declaração preparada
-        if ($stmt->execute()) {
-            // Verifica se o registro foi inserido com sucesso
-            if ($stmt->rowCount() > 0) {
-                echo "Registro inserido com sucesso!";
-                header("Location: utilities-mesas.php");
-                exit();
+        if ($existingMesa) {
+            // A mesa já existe no banco de dados, então vamos verificar a situação
+            if ($existingMesa['situacao'] == 'INATIVO') {
+                // Se a mesa estiver INATIVA, atualize a situação para ATIVO
+                $updateStmt = $conn->prepare("UPDATE mesas SET situacao = 'ATIVO' WHERE numero_mesa = :mesa");
+                $updateStmt->bindParam(':mesa', $mesa);
+                if ($updateStmt->execute()) {
+                    echo "A mesa já existe, mas a situação foi atualizada para ATIVO.";
+                } else {
+                    echo "Erro ao atualizar a situação da mesa.";
+                }
             } else {
-                echo "Erro ao inserir o registro.";
-                header("Location: utilities-mesas.php");
-                exit();
+                echo "A mesa já existe e está ATIVA.";
             }
         } else {
-            echo "Erro na execução da declaração: " . $stmt->errorInfo()[2];
+            // A mesa não existe, então crie uma nova
+            $insertStmt = $conn->prepare("INSERT INTO mesas (numero_mesa) VALUES (:mesa)");
+            $insertStmt->bindParam(':mesa', $mesa);
+            if ($insertStmt->execute()) {
+                echo "Mesa criada com sucesso!";
+            } else {
+                echo "Erro ao inserir a mesa.";
+            }
         }
+
+        header("Location: utilities-mesas.php");
+        exit();
+
     } catch (PDOException $e) {
         // Trata erros de conexão PDO
         echo "Erro na conexão: " . $e->getMessage();

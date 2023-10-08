@@ -1,7 +1,7 @@
 <?php
 
 // Start session
-if(!session_id()){
+if (!session_id()) {
     session_start();
 }
 require_once "./conexao/config.php";
@@ -33,14 +33,73 @@ if (!isset($_SESSION['usuario'])) {
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="css/cardapio.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+
+    <style>
+        .custom-file-upload {
+            display: inline-block;
+            padding: 10px 20px;
+            cursor: pointer;
+            color: #fff;
+            background-color: #007bff;
+            /* Cor de fundo do botão */
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-file-upload:hover {
+            background-color: #0056b3;
+            /* Cor de fundo do botão quando hover */
+        }
+
+        .custom-file-upload i {
+            margin-right: 5px;
+        }
+
+        /* Estilizando o input de arquivo para ficar oculto */
+        input[type="file"] {
+            display: none;
+        }
+
+
+        .restaurant-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            max-width: 300px;
+            /* Defina a largura máxima desejada */
+            margin: 0 auto;
+            /* Centralize o card horizontalmente */
+        }
+
+        .restaurant-card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .restaurant-card .card-actions {
+            text-align: right;
+        }
+
+        .hover-grow {
+            transition: transform 0.9s ease;
+            /* Define a transição de 0.3 segundos com efeito suave */
+        }
+
+        .hover-grow:hover {
+            transform: scale(0.9);
+            /* Aumenta o tamanho em 10% (1.1 vezes) ao passar o mouse */
+        }
+    </style>
 
 </head>
 
@@ -63,7 +122,7 @@ if (!isset($_SESSION['usuario'])) {
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="dash.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Painel de gerenciamento</span></a>
@@ -78,7 +137,7 @@ if (!isset($_SESSION['usuario'])) {
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-                        <!--Apagado-->
+            <!--Apagado-->
 
 
             <!-- Nav Item - Utilities Collapse Menu -->
@@ -88,29 +147,29 @@ if (!isset($_SESSION['usuario'])) {
                     <span>Mesas</span></a>
             </li>
 
-              <!-- Divider -->
-              <hr class="sidebar-divider">
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
             <li class="nav-item">
                 <a class="nav-link" href="utilities-cardapio.php">
                     <i class="fas bi-card-checklist"></i>
                     <span>Cardápio</span></a>
             </li>
-              <!-- Divider -->
-              <hr class="sidebar-divider">
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-            
-             
+
+
             <li class="nav-item">
                 <a class="nav-link" href="utilities-pedidos.php">
                     <i class="fas fa-fw bi-phone"></i>
                     <span>Pedidos</span></a>
             </li>
 
-                 <!-- Divider -->
-                 <hr class="sidebar-divider">
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-    
+
             <li class="nav-item">
                 <a class="nav-link" href="utilities-caixa.php">
                     <i class="fas bi-cash-coin"></i>
@@ -119,7 +178,7 @@ if (!isset($_SESSION['usuario'])) {
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-        
+
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.php">
@@ -129,7 +188,7 @@ if (!isset($_SESSION['usuario'])) {
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-            
+
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -141,188 +200,170 @@ if (!isset($_SESSION['usuario'])) {
         <!-- Content Wrapper -->
         <div id="content-wrapper" class=" d-flex flex-column" style="background-image:url(./img/fundo2.png)">
 
-              <!-- Topbar -->
-              <nav class="navbar navbar-expand navbar-dark  topbar mb-4 static-top shadow">
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-dark  topbar mb-4 static-top shadow">
                 <!-- Sidebar Toggle (Topbar) -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
 
-            
+
                 <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
+                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                    <li class="nav-item dropdown no-arrow d-sm-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <!-- Dropdown - Messages -->
+                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                            <form class="form-inline mr-auto w-100 navbar-search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
                                     </div>
-                                </form>
-                            </div>
-                        </li>
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
-                           <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nomeUsuario; ?></span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="conta.php">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Perfil
-                                </a>
-                               
-                                
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Sair da conta 
-                                    </a>
                                 </div>
-                            </li>
+                            </form>
+                        </div>
+                    </li>
 
-                        </ul>
+                    <div class="topbar-divider d-none d-sm-block"></div>
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nomeUsuario; ?></span>
+                            <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="conta.php">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Perfil
+                            </a>
 
-                    </nav>
-                <!-- End of Topbar -->
 
-                <!--Inicio Coluna-->
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Sair da conta
+                            </a>
+                        </div>
+                    </li>
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-                    <!-- Tabela Mesa -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3 d-flex justify-content-around">
-                            <h6 class="m-0 font-weight-bold text-dark fa-2x">Cardápio</h6>
-                            <div id="cdm">
-                                <button type="button" class="btn btn-link text-dark fw-bold" style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Adicionar Combos</button>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!--Inicio Coluna-->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <!-- Tabela Mesa -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex justify-content-around">
+                        <h6 class="m-0 font-weight-bold text-dark fa-2x">Cardápio</h6>
+                        <div id="cdm">
+                            <button type="button" class="btn btn-link text-dark fw-bold" style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Adicionar Combos</button>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class=" fw-bold fs-5" id="exampleModalLabel">Adicione um combo no cardápio</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
+                                        <div class="modal-header">
+                                            <h1 class=" fw-bold fs-5" id="exampleModalLabel">Adicione um combo no cardápio</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
 
-                                    <!--Tabela-->
-                                    <div class="modal-body">
-                                    <form method="POST" action="insert_cardapio.php" enctype="multipart/form-data">
-                                        <div class="row mb-3">
-                                            <label for="nome" class="col-sm-3 col-form-label">Nome:</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="nome" name="nome" required>
-                                            </div>
+                                        <!--Tabela-->
+                                        <div class="modal-body">
+                                            <form method="POST" action="insert_cardapio.php" enctype="multipart/form-data">
+                                                <div class="row mb-3">
+                                                    <label for="nome" class="col-sm-3 col-form-label">Nome:</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="nome" name="nome" required>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="descricao" class="col-md-3 col-form-label">Descrição:</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="descricao" name="descricao" required>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="preco" class="col-sm-3 col-form-label">Preço:</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="number" class="form-control" id="preco" name="preco" step="0.01" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row mb-3">
+                                                    <label for="imagem" class="col-sm-3 col-form-label">Imagem:</label>
+                                                    <div class="col-sm-9">
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" name="imagem" accept="image/*" id="imagem" aria-label="Upload de imagem" aria-describedby="imagem-label">
+                                                            <label class="custom-file-label" for="imagem" id="imagem-label">Escolha um arquivo</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Fechar</button>
+                                                    <button type="submit" class="btn btn-dark">Adicionar Combo</button>
+                                                </div>
+                                            </form>
+
                                         </div>
-                                        <div class="row mb-3">
-                                            <label for="descricao" class="col-md-3 col-form-label">Descrição:</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="descricao" name="descricao" required>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="preco" class="col-sm-3 col-form-label">Preço:</label>
-                                            <div class="col-sm-9">
-                                                <input type="number" class="form-control" id="preco" name="preco" step="0.01" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-row mb-3">
-                                            <label for="imagem" class="col-sm-3 col-form-label">Imagem:</label>
-                                            <div class="col-sm-9">
-                                                <div class="custom-file">
-                                                    <input type="file"  class="custom-file-input" name="imagem" accept="image/*" id="imagem">
-                                                    <label class="custom-file-label" for="imagem">Escolha um arquivo</label>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- HTML -->
+                    <div class="card-body" style="max-width: 1200px; margin: 0 auto;">
+                        <div class="table-responsive">
+                            <?php
+                            // Continue com o restante do código
+                            include './conexao/config.php';
+
+                            try {
+                                // Cria uma nova conexão PDO
+                                $query = "SELECT ID_CARDAPIO as id,
+          PRECO_CARDAPIO as preco,
+          NOME as nome,
+          DESCRICAO as descricao,
+          imagem,
+          situacao
+      FROM cardapio WHERE situacao = 'ATIVO'";
+                                $stmt = $conn->prepare($query);
+                                $stmt->execute();
+                                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            } catch (PDOException $e) {
+                                echo "Erro na conexão: " . $e->getMessage();
+                            }
+                            ?>
+
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <?php foreach ($results as $row) { ?>
+                                        <div class="col-lg-4 col-md-6 col-sm-12 animate__animated animate__fadeIn">
+                                            <div class="restaurant-card hover-grow"> <!-- Adicione a classe hover-grow aqui -->
+                                                <img src="data:image/jpeg;base64,<?php echo base64_encode($row['imagem']); ?>" alt="<?php echo $row['nome']; ?>">
+                                                <h4 class="text-center mt-3"><?php echo $row['nome']; ?></h4>
+                                                <div class="form-group text-center">
+                                                    <p><?php echo $row['descricao']; ?></p>
+                                                </div>
+                                                <p class="text-center">Preço: R$ <?php echo number_format($row['preco'], 2, ',', '.'); ?></p>
+                                                <div class="card-actions text-center">
+                                                    <a href="deletar_cardapio.php?id=<?php echo $row['id']; ?>" class="btn btn-danger"><i class="bi bi-trash3-fill"></i> Deletar</a>
+                                                    <a class="btn btn-warning" href="editar_registro.php?nome=<?php echo urlencode($row['nome']); ?>" data-toggle="modal" data-target="#myModal<?php echo $row['id']; ?>"><i class="bi bi-pen-fill"></i> Editar</a>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Fechar</button>
-                                            <button type="submit" class="btn btn-dark">Adicionar Combo</button>
-                                        </div>
-                                    </form>
-
-                                    </div>
-                                   
-                                    </div>
-                                </div>
-                                </div>
-                                </div>
-                                </div>
-                                <div class="card-body">
-                                <div class="table-responsive">
-                                
-
-                                <?php
-// Continue com o restante do código
-include './conexao/config.php';
-
-try {
-    // Cria uma nova conexão PDO
-    $query = "SELECT ID_CARDAPIO as id,
-                PRECO_CARDAPIO as preco,
-                NOME as nome,
-                DESCRICAO as descricao,
-                imagem,
-                situacao
-            FROM cardapio WHERE situacao = 'ATIVO'";
-    $stmt = $conn->prepare($query);
-    $stmt->execute();
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    echo "Erro na conexão: " . $e->getMessage();
-}
-?>
-
-<!-- TABELA -->
-<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" method="POST">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Preço</th>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th>Imagens</th>
-            <th>Ações</th> <!-- Nova coluna para os botões de ação -->
-        </tr>
-    </thead>
-    <tbody>
-    <?php foreach ($results as $row) { ?>
-        <tr>
-            <td><?php echo $row['id']; ?></td>
-            <td><?php echo $row['preco']; ?></td>
-            <td><?php echo $row['nome']; ?></td>
-            <td><?php echo $row['descricao']; ?></td>
-            <td><img src="data:image/jpeg;base64,<?php echo base64_encode($row['imagem']); ?>" width="150" height="100" /></td>
-            <td>
-                <a href="deletar_cardapio.php?id=<?php echo $row['id']; ?>" class="btn btn-outline-danger"><i class="bi bi-trash3-fill"></i></a>
-                
-                                        <a class="btn btn-outline-warning"
-                                            href="editar_registro.php?nome=<?php echo urlencode($row['nome']); ?>"
-                                            data-toggle="modal" data-target="#myModal<?php echo $row['id']; ?>">
-                                            <i class="bi bi-pen-fill"></i>
-                                        </a>
-
+                                        <!-- Modal de Edição -->
                                         <div class="modal fade" id="myModal<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel<?php echo $row['id']; ?>">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
@@ -335,113 +376,94 @@ try {
                                                     <div class="modal-body">
                                                         <form class="user" action="update_cardapio.php" method="POST" enctype="multipart/form-data">
                                                             <input type="hidden" class="form-control form-control-user" name="id" value="<?php echo $row['id']; ?>">
-                                                            <div class="form-group row">
-                                                                <div class="col-sm-12 mb-3 mb-sm-0">
-                                                                    <input type="text" class="form-control form-control-user" name="preco" value="<?php echo $row['preco']; ?>">
-                                                                </div>
+                                                            <div class="form-group">
+                                                                <label for="preco">Preço:</label>
+                                                                <input type="text" class="form-control" name="preco" value="<?php echo $row['preco']; ?>">
                                                             </div>
+                                                            <div class="form-group">
+                                                                <label for="nome">Nome:</label>
+                                                                <input type="text" class="form-control" name="nome" value="<?php echo $row['nome']; ?>">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="descricao">Descrição:</label>
+                                                                <input type="text" class="form-control" name="descricao" value="<?php echo $row['descricao']; ?>">
+                                                            </div>
+                                                            <label for="nova_imagem" class="custom-file-upload">
+                                                                <i class="fas fa-cloud-upload-alt"></i> Escolha uma imagem
+                                                            </label>
+                                                            <input type="file" class="form-control-file" name="nova_imagem" id="nova_imagem" accept="image/*">
 
-                                                            <div class="form-group row">
-                                                                <div class="col-sm-12 mb-3 mb-sm-0">
-                                                                    <input type="text" class="form-control form-control-user" name="nome" value="<?php echo $row['nome']; ?>">
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- Outros campos para edição -->
-                                                            <div class="form-group row">
-                                                                <div class="col-sm-12 mb-3 mb-sm-0">
-                                                                    <input type="text" class="form-control form-control-user" name="descricao" value="<?php echo $row['descricao']; ?>">
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group row">
-                                                                <label for="imagem" class="col-sm-3 col-form-label">Imagem:</label>
-                                                                <div class="col-sm-9">
-                                                                    <div class="custom-file">
-                                                                        <input type="file" class="custom-file-input" name="nova_imagem" id="nova_imagem" accept="image/*">
-                                                                        <label class="custom-file-label" for="imagem">Escolha uma imagem</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- Botão de envio -->
                                                             <input class="btn btn-light text-dark w-100" type="submit" value="Salvar">
                                                         </form>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Footer -->
+                    <footer class="sticky-footer ">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                                <span>Copyright &copy; PalaceCode 2023</span>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- End of Footer -->
 
-                </td>
-                                </tr>
-                                <?php } ?>
-                        </tbody>
-                    </table>
                 </div>
+                <!-- End of Content Wrapper -->
+
             </div>
-       </div>
-                
-                        
-            <!-- Footer -->
-            <footer class="sticky-footer ">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; PalaceCode 2023</span>
+            <!-- End of Page Wrapper -->
+
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
+
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Pronto para sair?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Selecione "Sair" abaixo se você está pronto para encerrar sua sessão</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                            <a class="btn btn-dark" href="index.php">Sair</a>
+                        </div>
                     </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
+            </div>
 
-        </div>
-        <!-- End of Content Wrapper -->
+            <script type="text/javascript" src="js/cardapio.js"></script>
+            <!-- Bootstrap core JavaScript-->
+            <script src="vendor/jquery/jquery.min.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    </div>
-    <!-- End of Page Wrapper -->
+            <!-- Core plugin JavaScript-->
+            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+            <!-- Custom scripts for all pages-->
+            <script src="js/sb-admin-2.min.js"></script>
 
-     <!-- Logout Modal-->
-     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-     <div class="modal-dialog" role="document">
-         <div class="modal-content">
-             <div class="modal-header">
-                 <h5 class="modal-title" id="exampleModalLabel">Pronto para sair?</h5>
-                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">×</span>
-                 </button>
-             </div>
-             <div class="modal-body">Selecione "Sair" abaixo se você está pronto para encerrar sua sessão</div>
-             <div class="modal-footer">
-                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                 <a class="btn btn-dark" href="index.php">Sair</a>
-             </div>
-         </div>
-     </div>
- </div>
-
-    <script type="text/javascript" src="js/cardapio.js"></script>
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
-     <!-- Page level plugins -->
-     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
- 
-     <!-- Page level custom scripts -->
-     <script src="js/demo/datatables-demo.js"></script>
+            <!-- Page level plugins -->
+            <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+            <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+            <!-- Page level custom scripts -->
+            <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 
