@@ -19,6 +19,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $admissao = $_POST['admissao'];
     $data = date('Y-m-d', strtotime(str_replace('/', '-', $admissao)));
 
+    // Função para validar CPF
+    function validarCPF($cpf) {
+        // Remove caracteres não numéricos
+        $cpf = preg_replace('/[^0-9]/', '', $cpf);
+
+        // Verifica se o CPF possui 11 dígitos
+        if (strlen($cpf) != 11) {
+            return false;
+        }
+
+        // Verifica se todos os dígitos são iguais, o que torna o CPF inválido
+        if (preg_match('/^(\d)\1*$/', $cpf)) {
+            return false;
+        }
+
+        // Calcula os dígitos verificadores
+        $soma = 0;
+        for ($i = 0; $i < 9; $i++) {
+            $soma += $cpf[$i] * (10 - $i);
+        }
+        $resto = $soma % 11;
+        $digito1 = ($resto < 2) ? 0 : 11 - $resto;
+
+        $soma = 0;
+        for ($i = 0; $i < 10; $i++) {
+            $soma += $cpf[$i] * (11 - $i);
+        }
+        $resto = $soma % 11;
+        $digito2 = ($resto < 2) ? 0 : 11 - $resto;
+
+        // Verifica se os dígitos verificadores calculados são iguais aos dígitos originais do CPF
+        if ($cpf[9] == $digito1 && $cpf[10] == $digito2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Verificar se o CPF é válido
+    if (!validarCPF($cpf)) {
+        echo "CPF inválido!";
+        header("Location: cadastro_funcionario.php");
+        exit();
+    }
+
     require_once "./conexao/config.php";
 
     try {
