@@ -45,34 +45,7 @@ if (!isset($_SESSION['usuario'])) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <style>
-        @keyframes rubberBand {
-            0% {
-                transform: scale(1);
-            }
-
-            30% {
-                transform: scale(1.25);
-            }
-
-            40% {
-                transform: scale(0.95);
-            }
-
-            60% {
-                transform: scale(1.15);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .rubberBand {
-            animation-name: rubberBand;
-            animation-duration: 1s;
-            animation-timing-function: ease-in-out;
-        }
-
+       
         @keyframes rubberBand {
             0% {
                 transform: scale(1);
@@ -316,7 +289,7 @@ if (!isset($_SESSION['usuario'])) {
                     <!-- Ganhos (mensal) Card Example -->
                     <div class="row">
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card1 border-left-success shadow h-100 py-2 rubberBand">
+                            <div class="card1 border-left-success shadow h-100 py-2 ">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -350,7 +323,7 @@ if (!isset($_SESSION['usuario'])) {
 
 
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card1 border-left-success shadow h-100 py-2 rubberBand">
+                            <div class="card1 border-left-success shadow h-100 py-2 ">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -382,7 +355,7 @@ if (!isset($_SESSION['usuario'])) {
                         </div>
 
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card1 border-left-success shadow h-100 py-2 rubberBand">
+                            <div class="card1 border-left-success shadow h-100 py-2 ">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -423,7 +396,7 @@ if (!isset($_SESSION['usuario'])) {
 
 
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card1 border-left-success shadow h-100 py-2 rubberBand">
+                            <div class="card1 border-left-success shadow h-100 py-2 ">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
