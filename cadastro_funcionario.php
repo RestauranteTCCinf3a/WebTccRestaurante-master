@@ -147,8 +147,8 @@ if (!isset($_SESSION['usuario'])) {
                                                 <input type="date" id="data" class="form-control form-control-user form-control" name="admissao" placeholder="Data" required>
                                             </div>
                                             <div class="col-sm-6">
-    <input type="tel" class="form-control form-control-user" name="telefone" id="telefone" placeholder="Telefone" required maxlength="15">
-</div>
+                                                <input type="tel" class="form-control form-control-user" name="telefone" id="telefone" placeholder="Telefone" required maxlength="15">
+                                            </div>
 
 
                                         </div>
@@ -213,21 +213,21 @@ if (!isset($_SESSION['usuario'])) {
                                         e.target.value = value;
                                     });
                                     document.getElementById('telefone').addEventListener('input', function(e) {
-    let value = e.target.value;
+                                        let value = e.target.value;
 
-    // Remove todos os caracteres não numéricos
-    value = value.replace(/\D/g, '');
+                                        // Remove todos os caracteres não numéricos
+                                        value = value.replace(/\D/g, '');
 
-    // Aplica a máscara para o formato (99) 9999-9999
-    if (value.length > 2) {
-        value = `(${value.substring(0, 2)}) ${value.substring(2)}`;
-        if (value.length > 10) {
-            value = `${value.substring(0, 10)}-${value.substring(10)}`;
-        }
-    }
+                                        // Aplica a máscara para o formato (99) 9999-9999
+                                        if (value.length > 2) {
+                                            value = `(${value.substring(0, 2)}) ${value.substring(2)}`;
+                                            if (value.length > 10) {
+                                                value = `${value.substring(0, 10)}-${value.substring(10)}`;
+                                            }
+                                        }
 
-    e.target.value = value;
-});
+                                        e.target.value = value;
+                                    });
 
 
                                     function validarCPF() {

@@ -45,7 +45,6 @@ if (!isset($_SESSION['usuario'])) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <style>
-       
         @keyframes rubberBand {
             0% {
                 transform: scale(1);
@@ -430,83 +429,82 @@ if (!isset($_SESSION['usuario'])) {
 
                     </div>
                     <?php
-include './conexao/config.php';
+                    include './conexao/config.php';
 
-try {
-    // Cria uma nova conexão PDO
-    $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
-    // Define o modo de erro PDO para exceções
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    $conn->query("SET lc_time_names = 'pt_BR'");
-    
-    // Obtém o mês atual
-    $mes_atual = date('m');
-    
-    // Antes de inserir novos pedidos para o mês atual, exclua os pedidos do mês anterior
-    $mes_anterior = date('m', strtotime('-1 month'));
-    $update_query = "UPDATE Pedidos SET situacao = 'INATIVO' WHERE MONTH(timestamp) = $mes_anterior";
-    $conn->exec($update_query);
-    
-    // Insira novos pedidos para o mês atual
-    // (coloque aqui a lógica para inserir os novos pedidos)
-    
-    // Consulta para recuperar os funcionários do mês atual
-    $query = "SELECT 
-    f.ID_FUNC AS id_funcionario,
-    f.USUARIO AS funcionario,
-    p.timestamp AS data_pedido,
-    COUNT(p.ID_Pedido) AS total_pedidos,
-    SUM(p.valorTotal) AS valor_total_pedidos
-FROM funcionario f
-LEFT JOIN Pedidos p ON f.ID_FUNC = p.ID_FUNC
-WHERE MONTH(p.timestamp) = MONTH(CURRENT_DATE())
-AND YEAR(p.timestamp) = YEAR(CURRENT_DATE())
-GROUP BY f.ID_FUNC, f.USUARIO, p.timestamp
-ORDER BY valor_total_pedidos DESC
-LIMIT 4";
+                    try {
+                        // Cria uma nova conexão PDO
+                        $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
+                        // Define o modo de erro PDO para exceções
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $stmt = $conn->query($query);
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-    // Verifica se há resultados antes de exibi-los
-    if (!empty($results)) {
-?>
-        <div class="card-body card">
-            <h2>Funcionário do Mês</h2>
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover text-dark" id="employeeOfTheMonthTable">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Funcionário</th>
-                            <th>Mês</th>
-                            <th>Total de Pedidos</th>
-                            <th>Valor Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach ($results as $row) { ?>
-                            <tr>
-                                <td><?php echo $row['funcionario']; ?></td>
-                                <td><?php echo $mes_atual; ?></td>
-                                <td><?php echo $row['total_pedidos']; ?></td>
-                                <td>R$ <?php echo number_format($row['valor_total_pedidos'], 2, ',', '.'); ?></td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                        $conn->query("SET lc_time_names = 'pt_BR'");
 
-<?php
-    } else {
-        echo " ";
-    }
-} catch (PDOException $e) {
-    echo "Erro na conexão: " . $e->getMessage();
-}
-?>
+                        // Obtém o mês atual
+                        $mes_atual = date('m');
+
+                        // Antes de inserir novos pedidos para o mês atual, exclua os pedidos do mês anterior
+                        $mes_anterior = date('m', strtotime('-1 month'));
+                        $update_query = "UPDATE Pedidos SET situacao = 'INATIVO' WHERE MONTH(timestamp) = $mes_anterior";
+                        $conn->exec($update_query);
+
+                        // Insira novos pedidos para o mês atual
+                        // (coloque aqui a lógica para inserir os novos pedidos)
+
+                        // Consulta para recuperar os funcionários do mês atual e somar todos os pedidos do mês
+                        $query = "SELECT 
+        f.ID_FUNC AS id_funcionario,
+        f.USUARIO AS funcionario,
+        COUNT(p.ID_Pedido) AS total_pedidos,
+        SUM(p.valorTotal) AS valor_total_pedidos
+    FROM funcionario f
+    LEFT JOIN Pedidos p ON f.ID_FUNC = p.ID_FUNC
+    WHERE MONTH(p.timestamp) = MONTH(CURRENT_DATE())
+    AND YEAR(p.timestamp) = YEAR(CURRENT_DATE())
+    GROUP BY f.ID_FUNC, f.USUARIO
+    ORDER BY valor_total_pedidos DESC
+    LIMIT 4";
+
+                        $stmt = $conn->query($query);
+                        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                        // Verifica se há resultados antes de exibi-los
+                        if (!empty($results)) {
+                    ?>
+                            <div class="card-body card">
+                                <h2>Funcionário do Mês</h2>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover text-dark" id="employeeOfTheMonthTable">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Funcionário</th>
+                                                <th>Mês</th>
+                                                <th>Total de Pedidos</th>
+                                                <th>Valor Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            foreach ($results as $row) { ?>
+                                                <tr>
+                                                    <td><?php echo $row['funcionario']; ?></td>
+                                                    <td><?php echo $mes_atual; ?></td>
+                                                    <td><?php echo $row['total_pedidos']; ?></td>
+                                                    <td>R$ <?php echo number_format($row['valor_total_pedidos'], 2, ',', '.'); ?></td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                    <?php
+                        } else {
+                            echo " ";
+                        }
+                    } catch (PDOException $e) {
+                        echo "Erro na conexão: " . $e->getMessage();
+                    }
+                    ?>
 
 
 
