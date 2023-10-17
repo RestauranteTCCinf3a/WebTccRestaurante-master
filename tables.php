@@ -15,6 +15,14 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
+// Verifica a ocupação do usuário
+if ($_SESSION['OCUPACAO'] !== 'Admin') {
+    // Se a ocupação não for 'Admin', redireciona para outra página ou mostra uma mensagem de erro
+    header("Location: dash.php.php");
+    exit();
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -406,23 +414,25 @@ if (!isset($_SESSION['usuario'])) {
                                                                         </button>
                                                                     </div>
                                                                     <div class="modal-body">
-                                                                        <form class="user" action="update_registro.php" method="POST">
+                                                                        <form class="user" action="update_registro.php" method="POST" onsubmit="return validarForm()">
                                                                             <div class="form-group row">
                                                                                 <input type="hidden" class="form-control form-control-user" name="id" value="<?php echo $row['id']; ?>">
+                                                                            </div>
+                                                                            <div class="form-group row">
                                                                                 <div class="col-sm-12 mb-3 mb-sm-0">
-                                                                                    <input type="text" class="form-control form-control-user" name="cpf" value="<?php echo $row['cpf']; ?>">
+                                                                                    <input type="text" id="cpf" name="cpf" class="form-control form-control-user" placeholder="CPF" value="<?php echo $row['cpf']; ?>" maxlength="14" required>
+
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-12 mb-3 mb-sm-0">
-                                                                                    <input type="text" class="form-control form-control-user" name="nome" value="<?php echo $row['nome']; ?>">
+                                                                                    <input type="text" class="form-control form-control-user" name="nome" value="<?php echo $row['nome']; ?>" placeholder="Nome">
                                                                                 </div>
                                                                             </div>
-
                                                                             <!-- Outros campos para edição -->
                                                                             <div class="form-group row">
-                                                                                <div class="col-sm-12 mb-3 mb-sm-0">
-                                                                                    <input type="email" class="form-control form-control-user" name="email" value="<?php echo $row['email']; ?>">
+                                                                                <div class="col-sm-12">
+                                                                                    <input type="email" class="form-control form-control-user" name="email" value="<?php echo $row['email']; ?>" placeholder="E-mail">
                                                                                 </div>
                                                                             </div>
 
@@ -434,49 +444,173 @@ if (!isset($_SESSION['usuario'])) {
 
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-12">
-                                                                                    <input type="text" class="form-control form-control-user" name="usuario" value="<?php echo $row['usuario']; ?>">
+                                                                                    <input type="text" class="form-control form-control-user" name="usuario" value="<?php echo $row['usuario']; ?>" placeholder="Usuário">
                                                                                 </div>
                                                                             </div>
-
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-12">
-                                                                                    <input type="text" class="form-control form-control-user" name="idade" value="<?php echo $row['idade']; ?>">
+                                                                                    <input type="text" class="form-control form-control-user" id="idade" name="idade" value="<?php echo $row['idade']; ?>" placeholder="Idade">
                                                                                 </div>
                                                                             </div>
-
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-12">
-                                                                                    <input type="password" class="form-control form-control-user" name="senha" value="<?php echo $row['senha']; ?>">
+                                                                                    <input type="password" class="form-control form-control-user" name="senha" value="<?php echo $row['senha']; ?>" placeholder="Senha">
                                                                                 </div>
                                                                             </div>
-
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-12">
-                                                                                    <input type="text" class="form-control form-control-user" name="rg" value="<?php echo $row['rg']; ?>">
+                                                                                    <input type="text" class="form-control form-control-user" id="rg" name="rg" value="<?php echo $row['rg']; ?>" placeholder="RG">
                                                                                 </div>
                                                                             </div>
-
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-12">
-                                                                                    <input type="text" class="form-control form-control-user" name="salario" value="<?php echo $row['salario']; ?>">
+                                                                                    <input type="text" class="form-control form-control-user" id="salario" name="salario" value="<?php echo $row['salario']; ?>" placeholder="Salário">
                                                                                 </div>
                                                                             </div>
-
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-12">
-                                                                                    <input type="text" class="form-control form-control-user" name="telefone" value="<?php echo $row['telefone']; ?>">
+                                                                                    <input type="text" class="form-control form-control-user" id="telefone" name="telefone" value="<?php echo $row['telefone']; ?>" placeholder="Telefone">
                                                                                 </div>
                                                                             </div>
-
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-12">
-                                                                                    <input type="text" class="form-control form-control-user" name="data_inicio" id="data" value="<?php echo $row['data_inicio']; ?>">
+                                                                                    <input type="text" class="form-control form-control-user" id="data" name="data_inicio" value="<?php echo $row['data_inicio']; ?>" placeholder="Data de Início">
                                                                                 </div>
                                                                             </div>
-
                                                                             <!-- Botão de envio -->
                                                                             <input class="btn btn-light text-dark w-100" type="submit" value="Salvar">
                                                                         </form>
+
+                                                                        <script>
+                                                                            // Máscara para o campo CPF
+                                                                            document.getElementById('cpf').addEventListener('input', function(e) {
+                                                                                let value = e.target.value;
+                                                                                value = value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+                                                                                if (value.length > 11) {
+                                                                                    value = value.slice(0, 11); // Limita a 11 caracteres
+                                                                                }
+                                                                                if (value.length === 11) {
+                                                                                    value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'); // Formato: XXX.XXX.XXX-XX
+                                                                                } else if (value.length > 3 && value.length <= 6) {
+                                                                                    value = value.replace(/(\d{3})(\d{0,3})/, '$1.$2'); // Formato: XXX.XXX
+                                                                                } else if (value.length > 6 && value.length <= 9) {
+                                                                                    value = value.replace(/(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3'); // Formato: XXX.XXX.XXX
+                                                                                }
+                                                                                e.target.value = value;
+                                                                            });
+
+                                                                            // Máscara para o campo RG
+                                                                            document.getElementById('rg').addEventListener('input', function(e) {
+                                                                                let value = e.target.value;
+
+                                                                                // Remove todos os caracteres não numéricos
+                                                                                value = value.replace(/\D/g, '');
+
+                                                                                // Aplica a máscara, no caso, assumindo um formato de 99.999.999-9
+                                                                                if (value.length > 0) {
+                                                                                    value = value.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, '$1.$2.$3-$4');
+                                                                                }
+
+                                                                                e.target.value = value;
+                                                                            });
+                                                                            document.getElementById('telefone').addEventListener('input', function(e) {
+                                                                                let value = e.target.value;
+
+                                                                                // Remove todos os caracteres não numéricos
+                                                                                value = value.replace(/\D/g, '');
+
+                                                                                // Aplica a máscara para o formato (99) 9999-9999
+                                                                                if (value.length > 2) {
+                                                                                    value = `(${value.substring(0, 2)}) ${value.substring(2)}`;
+                                                                                    if (value.length > 10) {
+                                                                                        value = `${value.substring(0, 10)}-${value.substring(10)}`;
+                                                                                    }
+                                                                                }
+
+                                                                                e.target.value = value;
+                                                                            });
+
+
+                                                                            function validarCPF() {
+                                                                                var cpfInput = document.getElementById('cpf');
+                                                                                var cpfValue = cpfInput.value.replace(/[^\d]/g, ''); // Remove caracteres não numéricos
+                                                                                if (cpfValue.length !== 11) {
+                                                                                    document.getElementById('cpf-error').innerText = 'CPF deve ter 11 dígitos.';
+                                                                                    cpfInput.focus();
+                                                                                    return false;
+                                                                                } else {
+                                                                                    document.getElementById('cpf-error').innerText = ''; // Limpa mensagem de erro se o CPF tiver 11 dígitos
+                                                                                }
+                                                                                return true;
+                                                                            }
+
+                                                                            function validarEmail() {
+                                                                                var emailInput = document.getElementById('email');
+                                                                                var emailValue = emailInput.value.trim(); // Remove espaços em branco do início e do fim
+
+                                                                                // Verifica se o campo de e-mail está vazio
+                                                                                if (emailValue === '') {
+                                                                                    document.getElementById('email-error').innerText = 'E-mail é obrigatório.';
+                                                                                    emailInput.focus();
+                                                                                    return false;
+                                                                                }
+
+                                                                                // Verifica se o e-mail possui um formato válido
+                                                                                var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                                                                                if (!emailPattern.test(emailValue)) {
+                                                                                    document.getElementById('email-error').innerText = 'E-mail inválido.';
+                                                                                    emailInput.focus();
+                                                                                    return false;
+                                                                                }
+
+                                                                                // Aqui você pode adicionar sua lógica personalizada para permitir ou rejeitar domínios específicos
+                                                                                // Por exemplo, você pode permitir apenas e-mails do domínio "example.com"
+                                                                                var allowedDomains = ["gmail.com", "example.com"]; // Adicione os domínios permitidos aqui
+                                                                                var emailDomain = emailValue.split('@')[1];
+
+                                                                                if (!allowedDomains.includes(emailDomain)) {
+                                                                                    document.getElementById('email-error').innerText = 'Este domínio de e-mail não é permitido.';
+                                                                                    emailInput.focus();
+                                                                                    return false;
+                                                                                }
+
+                                                                                // Máscara para o campo CPF
+                                                                                document.getElementById('cpf').addEventListener('input', function(e) {
+                                                                                    let value = e.target.value;
+                                                                                    value = value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+                                                                                    if (value.length > 11) {
+                                                                                        value = value.slice(0, 11); // Limita a 11 caracteres
+                                                                                    }
+                                                                                    if (value.length >= 4 && value.length <= 6) {
+                                                                                        value = value.replace(/(\d{3})(\d{0,3})/, '$1.$2'); // Formato: XXX.XXX
+                                                                                    } else if (value.length >= 7 && value.length <= 9) {
+                                                                                        value = value.replace(/(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3'); // Formato: XXX.XXX.XXX
+                                                                                    } else if (value.length === 10) {
+                                                                                        value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'); // Formato: XXX.XXX.XXX-XX
+                                                                                    }
+                                                                                    e.target.value = value;
+                                                                                });
+
+                                                                                function validarCPF() {
+                                                                                    var cpfInput = document.getElementById('cpf');
+                                                                                    var cpfValue = cpfInput.value.replace(/[^\d]/g, ''); // Remove caracteres não numéricos
+                                                                                    if (cpfValue.length !== 11) {
+                                                                                        document.getElementById('cpf-error').innerText = 'CPF deve ter 11 dígitos.';
+                                                                                        cpfInput.focus();
+                                                                                        return false;
+                                                                                    } else {
+                                                                                        document.getElementById('cpf-error').innerText = ''; // Limpa mensagem de erro se o CPF tiver 11 dígitos
+                                                                                    }
+                                                                                    return true;
+                                                                                }
+
+
+                                                                                // Limpa a mensagem de erro se o e-mail for válido
+                                                                                document.getElementById('email-error').innerText = '';
+                                                                                return true;
+                                                                            }
+                                                                        </script>
+
                                                                     </div>
                                                                 </div>
                                                             </div>

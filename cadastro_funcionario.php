@@ -14,6 +14,16 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
+// Verifica a ocupação do usuário
+if ($_SESSION['OCUPACAO'] !== 'Admin') {
+    // Se a ocupação não for 'Admin', redireciona para outra página ou mostra uma mensagem de erro
+    echo "Você não tem permissão para acessar esta página.";
+    header("Location: dash.php");
+    echo '<meta http-equiv="refresh" content="3;URL=dash.php">'; // Redireciona após 3 segundos
+
+    exit();
+}
+
 ?>
 
 
@@ -111,13 +121,13 @@ if (!isset($_SESSION['usuario'])) {
                                     <div class="text-center">
                                         <h1 class="h2 text-dark mb-4">Cadastrar Funcionário</h1>
                                     </div>
-                                    <form class="user" action="cad_func_insert.php" method="POST">
+                                    <form class="user" action="cad_func_insert.php" method="POST" onsubmit="return validarCampos();">
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <input type="text" class="form-control form-control-user" name="nome" placeholder="Primeiro nome" required>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="email" class="form-control form-control-user" name="email" placeholder="Endereço de Email" required>
+                                                <input type="email" class="form-control form-control-user" name="email" placeholder="Endereço de Email" multiple required>
                                             </div>
                                         </div>
 
@@ -240,6 +250,41 @@ if (!isset($_SESSION['usuario'])) {
                                         } else {
                                             document.getElementById('cpf-error').innerText = ''; // Limpa mensagem de erro se o CPF tiver 11 dígitos
                                         }
+                                        return true;
+                                    }
+
+                                    function validarEmail() {
+                                        var emailInput = document.getElementById('email');
+                                        var emailValue = emailInput.value.trim(); // Remove espaços em branco do início e do fim
+
+                                        // Verifica se o campo de e-mail está vazio
+                                        if (emailValue === '') {
+                                            document.getElementById('email-error').innerText = 'E-mail é obrigatório.';
+                                            emailInput.focus();
+                                            return false;
+                                        }
+
+                                        // Verifica se o e-mail possui um formato válido
+                                        var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                                        if (!emailPattern.test(emailValue)) {
+                                            document.getElementById('email-error').innerText = 'E-mail inválido.';
+                                            emailInput.focus();
+                                            return false;
+                                        }
+
+                                        // Aqui você pode adicionar sua lógica personalizada para permitir ou rejeitar domínios específicos
+                                        // Por exemplo, você pode permitir apenas e-mails do domínio "example.com"
+                                        var allowedDomains = ["gmail.com", "example.com"]; // Adicione os domínios permitidos aqui
+                                        var emailDomain = emailValue.split('@')[1];
+
+                                        if (!allowedDomains.includes(emailDomain)) {
+                                            document.getElementById('email-error').innerText = 'Este domínio de e-mail não é permitido.';
+                                            emailInput.focus();
+                                            return false;
+                                        }
+
+                                        // Limpa a mensagem de erro se o e-mail for válido
+                                        document.getElementById('email-error').innerText = '';
                                         return true;
                                     }
                                 </script>

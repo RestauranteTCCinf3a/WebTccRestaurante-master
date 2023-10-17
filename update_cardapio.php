@@ -4,6 +4,8 @@ if (!session_id()) {
     session_start();
 }
 
+
+
 require_once "./conexao/config.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

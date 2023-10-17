@@ -14,6 +14,13 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
+// Verifica a ocupação do usuário
+if ($_SESSION['OCUPACAO'] !== 'Admin') {
+    // Se a ocupação não for 'Admin', redireciona para outra página ou mostra uma mensagem de erro
+    header("Location: dash.php.php");
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -41,33 +48,6 @@ if (!isset($_SESSION['usuario'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 
     <style>
-        .custom-file-upload {
-            display: inline-block;
-            padding: 10px 20px;
-            cursor: pointer;
-            color: #fff;
-            background-color: #007bff;
-            /* Cor de fundo do botão */
-            border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .custom-file-upload:hover {
-            background-color: #0056b3;
-            /* Cor de fundo do botão quando hover */
-        }
-
-        .custom-file-upload i {
-            margin-right: 5px;
-        }
-
-        /* Estilizando o input de arquivo para ficar oculto */
-        input[type="file"] {
-            display: none;
-        }
-
-
         .restaurant-card {
             border: 1px solid #ccc;
             border-radius: 10px;
@@ -332,12 +312,12 @@ if (!isset($_SESSION['usuario'])) {
                             try {
                                 // Cria uma nova conexão PDO
                                 $query = "SELECT ID_CARDAPIO as id,
-          PRECO_CARDAPIO as preco,
-          NOME as nome,
-          DESCRICAO as descricao,
-          imagem,
-          situacao
-      FROM cardapio WHERE situacao = 'ATIVO'";
+      PRECO_CARDAPIO as preco,
+      NOME as nome,
+      DESCRICAO as descricao,
+      imagem,
+      situacao
+  FROM cardapio WHERE situacao = 'ATIVO'";
                                 $stmt = $conn->prepare($query);
                                 $stmt->execute();
                                 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -349,7 +329,7 @@ if (!isset($_SESSION['usuario'])) {
                             <div class="container">
                                 <div class="row justify-content-center">
                                     <?php foreach ($results as $row) { ?>
-                                        <div class="col-lg-4 col-md-6 col-sm-12 animate__animated animate__fadeIn">
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="restaurant-card hover-grow"> <!-- Adicione a classe hover-grow aqui -->
                                                 <img src="data:image/jpeg;base64,<?php echo base64_encode($row['imagem']); ?>" alt="<?php echo $row['nome']; ?>">
                                                 <h4 class="text-center mt-3"><?php echo $row['nome']; ?></h4>
@@ -388,10 +368,8 @@ if (!isset($_SESSION['usuario'])) {
                                                                 <label for="descricao">Descrição:</label>
                                                                 <input type="text" class="form-control" name="descricao" value="<?php echo $row['descricao']; ?>">
                                                             </div>
-                                                            <label for="nova_imagem" class="custom-file-upload">
-                                                                <i class="fas fa-cloud-upload-alt"></i> Escolha uma imagem
-                                                            </label>
-                                                            <input type="file" class="form-control-file" name="nova_imagem" id="nova_imagem" accept="image/*">
+
+                                                            <input type="file" class="btn btn-link text-dark fw-bold" style="text-decoration: none;" name="nova_imagem" id="nova_imagem" accept="image/*">
 
                                                             <input class="btn btn-light text-dark w-100" type="submit" value="Salvar">
                                                         </form>
@@ -404,6 +382,7 @@ if (!isset($_SESSION['usuario'])) {
                             </div>
                         </div>
                     </div>
+
                     <!-- Footer -->
                     <footer class="sticky-footer ">
                         <div class="container my-auto">

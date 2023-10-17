@@ -13,6 +13,16 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
+// Verifica a ocupação do usuário
+if ($_SESSION['OCUPACAO'] !== 'Admin') {
+    // Se a ocupação não for 'Admin', redireciona para outra página ou mostra uma mensagem de erro
+    echo "Você não tem permissão para acessar esta página.";
+    header("Location: dash.php");
+    echo '<meta http-equiv="refresh" content="3;URL=dash.php">'; // Redireciona após 3 segundos
+
+    exit();
+}
+
 
 ?>
 
